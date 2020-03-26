@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -195,8 +195,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.0000000025193132, y: 3.097271e+27, z: 1.7849972e+31,
-    w: 4.5425013e+30}
+  m_BoundingSphereOverride: {x: 1.015e-42, y: 1.01e-43, z: 980710.94, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -670,6 +669,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724156901588575460, guid: 92bdc03085c24f0458249176be0778f2,
+        type: 3}
+      propertyPath: DelayTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8724156901588575461, guid: 92bdc03085c24f0458249176be0778f2,
         type: 3}

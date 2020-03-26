@@ -126,4 +126,4 @@ MonoBehaviour:
   BallSpeed: 10
   moveAss: 0
   canClone: 0
-  DelayTime: 8
+  DelayTime: 2

@@ -27,10 +27,13 @@ public class PlayerContoller : MonoBehaviour
             //clone.velocity = transform.TransformDirection(Vector3.forward * 10);
             if (collision.gameObject.GetComponent<Ball>().canClone == true)
             {
+
                 Rigidbody clone;
                 clone = Instantiate(clonedAss, collision.transform.position, collision.transform.rotation);
                 clone.GetComponent<Ball>().moveAllAsses();
                 clone.GetComponent<Ball>().moveAss = true;
+                //clone.GetComponent<Ball>().canClone = false;
+                //collision.gameObject.GetComponent<Ball>().canClone=false;
             }
         }
 
