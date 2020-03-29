@@ -311,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
         type: 3}
       propertyPath: colorMappings.Array.size
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
         type: 3}
@@ -428,6 +428,53 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2798257798615468072, guid: 67839bf1b6fce3444a6c8ac3cacc42c5,
         type: 3}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 3504477496006178648, guid: 407861af92fcd4044b474ef0d2c0ba53,
+        type: 3}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: CubeMesh
+      value: 
+      objectReference: {fileID: 3504477496006178648, guid: 407861af92fcd4044b474ef0d2c0ba53,
+        type: 3}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: Border.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: Border.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: Border.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: Border.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: color.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: color.g
+      value: 0.68397737
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: color.b
+      value: 0.25907797
+      objectReference: {fileID: 0}
     - target: {fileID: 5031780210838345200, guid: 7643a229e62ddef40a442a0d0a1b7758,
         type: 3}
       propertyPath: m_LocalPosition.x

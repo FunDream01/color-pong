@@ -1,17 +1,31 @@
 using UnityEngine;
-
-public class LevelGenerator : MonoBehaviour {
-
+using UnityEditor;
+using System.Collections.Generic;
+public class LevelGenerator : MonoBehaviour 
+{
+	public static LevelGenerator levelGenerator;
 	public Texture2D map;
+	public MeshRenderer CubeMesh;
+	public List<Color32> Colors=new List<Color32>();
+	public List<Material> materials=new List<Material>();
+	[Header("this is the color of border !")]
+	public Color Border = new Color (0,0,0,1); 
+	void Start () 
+	{
 
-	public ColorToPrefab[] colorMappings;
-
-	// Use this for initialization
-	void Start () {
-		GenerateLevel();
 	}
 
-	void GenerateLevel ()
+	void GenerateMaterials ()
+	{
+		for (int x = 0; x < map.width; x++)
+		{
+			for (int y = 0; y < map.height; y++)
+			{
+				FindAllColorsInMap(x, y);
+			}
+		}
+	}
+	void GenerateLevel()
 	{
 		for (int x = 0; x < map.width; x++)
 		{
@@ -21,25 +35,62 @@ public class LevelGenerator : MonoBehaviour {
 			}
 		}
 	}
-
 	void GenerateTile (int x, int y)
 	{
 		Color pixelColor = map.GetPixel(x, y);
-
-		if (pixelColor.a == 0)
+		Vector3 Position;
+		// if pixel is not transparrent.
+		if (pixelColor.a != 0)
 		{
-			// The pixel is transparrent. Let's ignore it!
-			return;
-		}
-
-		foreach (ColorToPrefab colorMapping in colorMappings)
-		{
-			if (colorMapping.color.Equals(pixelColor))
+			if (pixelColor.Equals(Border))
 			{
-				Vector2 position = new Vector2(x, y);
-				Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+				Position=new Vector3(x,y,1);
 			}
+			else
+			{
+				Position=new Vector3(x,y);
+			}
+			foreach (Material mat in materials)
+		 	{
+				if(pixelColor.Equals(mat.color))
+				{
+				    MeshRenderer mesh = Instantiate(CubeMesh,Position,Quaternion.identity,transform);
+					mesh.material=mat;
+			    }
+		    }
 		}
 	}
-	
+    Material CreateMat(Color32 PixelColor)
+	{
+        Material NewMaterial = new Material(Shader.Find("Standard"));
+        NewMaterial.color = PixelColor;
+		return NewMaterial;
+    }
+	void FindAllColorsInMap(int x,int y )
+	{
+		Color pixelColor = map.GetPixel(x, y);
+		foreach (Color color in Colors)
+		{
+			if(color.Equals(pixelColor))
+			{
+				return;
+			}
+		}
+		Colors.Add(pixelColor);
+		materials.Add(CreateMat(pixelColor));
+	}
 }
+public class Generator:Editor
+
+{
+	public override void OnInspectorGUI()
+	{
+		base.OnInspectorGUI();
+		if(GUILayout.Button("Generator Level"))
+		{
+		    //GenerateMaterials();
+		    //GenerateLevel();
+		}
+	}
+}
+
