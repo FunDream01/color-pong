@@ -6,12 +6,11 @@ public class Ball : MonoBehaviour
 {
     public float BallSpeed = 5f;
     [HideInInspector]
-    public bool moveAss = false;
+    public bool StartMoving = false;
     [HideInInspector]
     public bool canClone = false;
     public float DelayTime;
-    
-
+    public LayerMask PlayerLayerMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,33 +27,42 @@ public class Ball : MonoBehaviour
         GetComponent<Rigidbody>().velocity = new Vector3(BallSpeed*sx, BallSpeed * sy , 0f);
 
     }
-
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)&& moveAss == false)
+        if (Input.GetMouseButtonDown(0)&& StartMoving == false)
         {
             moveAllAsses();
-            moveAss = true;
+            StartMoving = true;
         }
-
-        
+        if (StartMoving){CastRay();}
     }
-    /// <summary>
-    /// OnCollisionEnter is called when this collider/rigidbody has begun
-    /// touching another rigidbody/collider.
-    /// </summary>
-    /// <param name="other">The Collision data associated with this collision.</param>
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("myBallz")){
+        if (other.gameObject.CompareTag("myBallz"))
+        {
             moveAllAsses();
+        }
+        if (other.transform.CompareTag(Tag.CubeTag))
+        {
+            other.transform.GetComponent<PixelManager>().ColorThePixel();
         }
     }
 
     void startCanCloning() 
     {
         canClone = true;
+    }
+    void CastRay(){
+        RaycastHit hit;
+        //Debug.Log("CastRay");
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 10,PlayerLayerMask))
+        {
+        Debug.Log("CastRay");
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hit.distance, Color.red);
+            if (hit.transform.CompareTag(Tag.CubeTag))
+            {
+                hit.transform.GetComponent<PixelManager>().ColorThePixel();
+            }
+        }
     }
 }

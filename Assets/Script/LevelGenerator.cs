@@ -3,16 +3,17 @@ using UnityEditor;
 using System.Collections.Generic;
 public class LevelGenerator : MonoBehaviour 
 {
-	public static LevelGenerator levelGenerator;
+	public Material UnColoredMat;
 	public Texture2D map;
+	public Texture2D Broders;
+	public ColorToPrefab Border;
 	public MeshRenderer CubeMesh;
 	public List<Color32> Colors=new List<Color32>();
 	public List<Material> materials=new List<Material>();
-	[Header("this is the color of border !")]
-	public Color Border = new Color (0,0,0,1); 
 	void Start () 
 	{
-
+        GenerateMaterials();
+		GenerateLevel();
 	}
 
 	void GenerateMaterials ()
@@ -32,32 +33,38 @@ public class LevelGenerator : MonoBehaviour
 			for (int y = 0; y < map.height; y++)
 			{
 				GenerateTile(x, y);
+				GenerateBorder(x,y);
 			}
 		}
 	}
 	void GenerateTile (int x, int y)
 	{
 		Color pixelColor = map.GetPixel(x, y);
-		Vector3 Position;
+		Vector3 Position = new Vector3(x,y);
 		// if pixel is not transparrent.
 		if (pixelColor.a != 0)
 		{
-			if (pixelColor.Equals(Border))
-			{
-				Position=new Vector3(x,y,1);
-			}
-			else
-			{
-				Position=new Vector3(x,y);
-			}
 			foreach (Material mat in materials)
 		 	{
 				if(pixelColor.Equals(mat.color))
 				{
 				    MeshRenderer mesh = Instantiate(CubeMesh,Position,Quaternion.identity,transform);
-					mesh.material=mat;
+					mesh.GetComponent<PixelManager>().ColoredMat=mat;
+					mesh.material=UnColoredMat;
 			    }
 		    }
+		}
+	}
+	void GenerateBorder (int x, int y)
+	{
+		Color pixelColor = Broders.GetPixel(x, y);
+		Vector3 Position = new Vector3(x,y,1);
+		// if pixel is not transparrent.
+		if (pixelColor.a != 0)
+		{
+			if(pixelColor.Equals(Border.color)){
+			    GameObject mesh = Instantiate(Border.prefab,Position,Quaternion.identity,transform);
+			}
 		}
 	}
     Material CreateMat(Color32 PixelColor)

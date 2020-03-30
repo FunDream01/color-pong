@@ -31,7 +31,7 @@ public class PlayerContoller : MonoBehaviour
                 Rigidbody clone;
                 clone = Instantiate(clonedAss, collision.transform.position, collision.transform.rotation);
                 clone.GetComponent<Ball>().moveAllAsses();
-                clone.GetComponent<Ball>().moveAss = true;
+                clone.GetComponent<Ball>().StartMoving = true;
                 //clone.GetComponent<Ball>().canClone = false;
                 //collision.gameObject.GetComponent<Ball>().canClone=false;
             }
