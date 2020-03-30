@@ -5,8 +5,6 @@ public class LevelGenerator : MonoBehaviour
 {
 	public Material UnColoredMat;
 	public Texture2D map;
-	public Texture2D Broders;
-	public ColorToPrefab Border;
 	public MeshRenderer CubeMesh;
 	public List<Color32> Colors=new List<Color32>();
 	public List<Material> materials=new List<Material>();
@@ -33,14 +31,13 @@ public class LevelGenerator : MonoBehaviour
 			for (int y = 0; y < map.height; y++)
 			{
 				GenerateTile(x, y);
-				GenerateBorder(x,y);
 			}
 		}
 	}
 	void GenerateTile (int x, int y)
 	{
 		Color pixelColor = map.GetPixel(x, y);
-		Vector3 Position = new Vector3(x,y);
+		Vector3 Position = new Vector3(x-(map.width/2),y);
 		// if pixel is not transparrent.
 		if (pixelColor.a != 0)
 		{
@@ -53,18 +50,6 @@ public class LevelGenerator : MonoBehaviour
 					mesh.material=UnColoredMat;
 			    }
 		    }
-		}
-	}
-	void GenerateBorder (int x, int y)
-	{
-		Color pixelColor = Broders.GetPixel(x, y);
-		Vector3 Position = new Vector3(x,y,1);
-		// if pixel is not transparrent.
-		if (pixelColor.a != 0)
-		{
-			if(pixelColor.Equals(Border.color)){
-			    GameObject mesh = Instantiate(Border.prefab,Position,Quaternion.identity,transform);
-			}
 		}
 	}
     Material CreateMat(Color32 PixelColor)

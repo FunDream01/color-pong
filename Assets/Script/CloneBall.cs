@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class CloneBall : MonoBehaviour
 {
     public float BallSpeed = 5f;
     [HideInInspector]
@@ -12,7 +12,6 @@ public class Ball : MonoBehaviour
     public float DelayTime;
     void Start()
     {
-        Time.timeScale=0;
         Invoke("startCanCloning", DelayTime);
         move();
     }
@@ -24,10 +23,6 @@ public class Ball : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Time.timeScale=1;
-        }
         CastRay();
     }
     void OnCollisionEnter(Collision other)
