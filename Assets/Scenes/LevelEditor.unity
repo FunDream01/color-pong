@@ -253,6 +253,31 @@ PrefabInstance:
     - target: {fileID: 8724156901588575385, guid: 92bdc03085c24f0458249176be0778f2,
         type: 3}
       propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724156901588575385, guid: 92bdc03085c24f0458249176be0778f2,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724156901588575385, guid: 92bdc03085c24f0458249176be0778f2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724156901588575385, guid: 92bdc03085c24f0458249176be0778f2,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724156901588575385, guid: 92bdc03085c24f0458249176be0778f2,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724156901588575385, guid: 92bdc03085c24f0458249176be0778f2,
+        type: 3}
+      propertyPath: m_AngularDrag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8724156901588575386, guid: 92bdc03085c24f0458249176be0778f2,
@@ -265,10 +290,15 @@ PrefabInstance:
       propertyPath: PlayerLayerMask.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 8724156901588575460, guid: 92bdc03085c24f0458249176be0778f2,
+        type: 3}
+      propertyPath: BallSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8724156901588575461, guid: 92bdc03085c24f0458249176be0778f2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.37
       objectReference: {fileID: 0}
     - target: {fileID: 8724156901588575461, guid: 92bdc03085c24f0458249176be0778f2,
         type: 3}
@@ -278,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 8724156901588575461, guid: 92bdc03085c24f0458249176be0778f2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8724156901588575461, guid: 92bdc03085c24f0458249176be0778f2,
         type: 3}

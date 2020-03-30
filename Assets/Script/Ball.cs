@@ -42,10 +42,10 @@ public class Ball : MonoBehaviour
         {
             moveAllAsses();
         }
-        if (other.transform.CompareTag(Tag.CubeTag))
+        /*if (other.transform.CompareTag(Tag.CubeTag))
         {
             other.transform.GetComponent<PixelManager>().ColorThePixel();
-        }
+        }*/
     }
 
     void startCanCloning() 
@@ -54,12 +54,13 @@ public class Ball : MonoBehaviour
     }
     void CastRay(){
         RaycastHit hit;
-        //Debug.Log("CastRay");
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 10,PlayerLayerMask))
+        Debug.Log("CastRay");
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 500))
+            Debug.Log("CastRay");
         {
         Debug.Log("CastRay");
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hit.distance, Color.red);
-            if (hit.transform.CompareTag(Tag.CubeTag))
+            if (hit.transform.tag == "Pixel")
             {
                 hit.transform.GetComponent<PixelManager>().ColorThePixel();
             }
