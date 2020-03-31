@@ -10,38 +10,41 @@ public class Ball : MonoBehaviour
     //[HideInInspector]
     public bool canClone = false;
     public float DelayTime;
-    void Start()
+    float constantSpeed = 10f;
+    float smoothingFactor = 1.0f;
+    private void Start()
     {
         Time.timeScale=0;
         Invoke("startCanCloning", DelayTime);
         move();
     }
+    
     public void move()
     {
         float sx = Random.Range(0, 2) == 0 ? -1 : 1;
         float sy = Random.Range(0, 2) == 0 ? -1 : 1;
         GetComponent<Rigidbody>().velocity = new Vector3(BallSpeed*sx, BallSpeed * sy , 0f);
-    }
-    void Update()
+    } 
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Time.timeScale=1;
         }
+        ConstantVelocity();
         CastRay();
     }
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("myBallz"))
-        {
-            move();
-        }
+    public void ConstantVelocity(){
+    
+        Vector3 cvel = GetComponent<Rigidbody>().velocity;
+        Vector3  tvel = cvel.normalized * constantSpeed;
+        GetComponent<Rigidbody>().velocity = Vector3.Lerp(cvel, tvel, Time.deltaTime * smoothingFactor);
     }
-    void startCanCloning() 
+    public void startCanCloning() 
     {
         canClone = true;
     }
-    void CastRay(){
+    public void CastRay(){
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 500))
         {
@@ -50,6 +53,19 @@ public class Ball : MonoBehaviour
             {
                 hit.transform.GetComponent<PixelManager>().ColorThePixel();
             }
+        }
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("myBallz"))
+        {
+            move();
+        }
+        if (other.gameObject.CompareTag("Player")){
+            Vector2 vel;
+            vel.x = GetComponent<Rigidbody>().velocity.x;
+            vel.y = (GetComponent<Rigidbody>().velocity.y / 2.0f) + (other.collider.attachedRigidbody.velocity.y / 3.0f);
+            GetComponent<Rigidbody>().velocity = vel;
         }
     }
 }

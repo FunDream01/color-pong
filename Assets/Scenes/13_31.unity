@@ -671,6 +671,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4663203653324348755, guid: 0ef1d16390450bd428572eff981289fc,
         type: 3}
+    - target: {fileID: 3671750945385672364, guid: 9793be4d238cb0a4d9b08ba9962131c4,
+        type: 3}
+      propertyPath: CloneBall
+      value: 
+      objectReference: {fileID: 4663203653324348755, guid: 0ef1d16390450bd428572eff981289fc,
+        type: 3}
     - target: {fileID: 3671750945385672365, guid: 9793be4d238cb0a4d9b08ba9962131c4,
         type: 3}
       propertyPath: m_IsKinematic
