@@ -11,7 +11,6 @@ public class PlayerContoller : MonoBehaviour
     public float MaxDistance;
     void Start()
     {
-        
     }
     void OnCollisionEnter(Collision other)
     {

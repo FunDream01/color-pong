@@ -10,10 +10,12 @@ public class Ball : MonoBehaviour
     //[HideInInspector]
     public bool canClone = false;
     public float DelayTime;
-    float constantSpeed = 10f;
-    float smoothingFactor = 1.0f;
+    float constantSpeed = 4f;
+    private LevelManager levelManager;
     private void Start()
     {
+        
+        levelManager=FindObjectOfType<LevelManager>();
         Time.timeScale=0;
         Invoke("startCanCloning", DelayTime);
         move();
@@ -23,7 +25,7 @@ public class Ball : MonoBehaviour
     {
         float sx = Random.Range(0, 2) == 0 ? -1 : 1;
         float sy = Random.Range(0, 2) == 0 ? -1 : 1;
-        GetComponent<Rigidbody>().velocity = new Vector3(BallSpeed*sx, BallSpeed * sy , 0f);
+        GetComponent<Rigidbody>().velocity = new Vector3(BallSpeed*sx, BallSpeed * 1 , 0f);
     } 
     private void Update()
     {
@@ -38,7 +40,7 @@ public class Ball : MonoBehaviour
     
         Vector3 cvel = GetComponent<Rigidbody>().velocity;
         Vector3  tvel = cvel.normalized * constantSpeed;
-        GetComponent<Rigidbody>().velocity = Vector3.Lerp(cvel, tvel, Time.deltaTime * smoothingFactor);
+        GetComponent<Rigidbody>().velocity = tvel* constantSpeed;
     }
     public void startCanCloning() 
     {
@@ -59,7 +61,7 @@ public class Ball : MonoBehaviour
     {
         if (other.gameObject.CompareTag("myBallz"))
         {
-            move();
+            //move();
         }
         if (other.gameObject.CompareTag("Player")){
             Vector2 vel;

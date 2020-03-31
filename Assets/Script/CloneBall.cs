@@ -14,11 +14,4 @@ public class CloneBall : Ball
         CastRay();
         ConstantVelocity();
     }
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("myBallz"))
-        {
-            move();
-        }
-    }
 }
