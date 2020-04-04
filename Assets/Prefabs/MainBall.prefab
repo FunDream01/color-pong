@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8724156901588575384}
   - component: {fileID: 8724156901588575385}
   - component: {fileID: 8724156901588575460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MainBall
   m_TagString: myBallz
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!114 &8724156901588575460
 MonoBehaviour:
@@ -123,7 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044b9d7ebfb062a49a3172534376d071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BallSpeed: 10
+  BallSpeed: 25
+  sx: 1
   StartMoving: 0
   canClone: 0
   DelayTime: 2
+  SpeedIncrement: 0.1

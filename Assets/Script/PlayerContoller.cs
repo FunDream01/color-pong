@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerContoller : MonoBehaviour
 {
     // Start is called before the first frame update
+    public float constantSpeed= 4f;
+    public float SpeedIncrement = .1f;
+
     Vector2 LastTapPos;
     public float Speed;
     public GameObject CloneBall;
@@ -26,8 +29,15 @@ public class PlayerContoller : MonoBehaviour
             }
         }
     }
+    private void FixedUpdate()
+    {
+        {
+        constantSpeed += Time.deltaTime * SpeedIncrement;
+        }
+    }
     void Update()
     {
+
         if (Input.GetMouseButton(0))
         {
 
