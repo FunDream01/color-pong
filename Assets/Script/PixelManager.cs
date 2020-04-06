@@ -6,9 +6,10 @@ public class PixelManager : MonoBehaviour
 {
     public Material ColoredMat;
     public bool isColored = false;
-    public void ColorThePixel(){
-        GetComponent<MeshRenderer>().material=ColoredMat;
-        isColored=true;
+    public void ColorThePixel()
+    {
+        GetComponent<MeshRenderer>().material = ColoredMat;
+        isColored = true;
         LevelManager.instance.CheckComplet();
     }
 

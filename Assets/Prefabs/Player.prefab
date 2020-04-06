@@ -107,8 +107,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df4aada5c47c674d87454fa64b27c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  constantSpeed: 4
+  SpeedIncrement: 0.1
   Speed: 0.02
+  CloneBall: {fileID: 0}
+  MaxDistance: 0
+  Colors:
+  - {r: 1, g: 0.08018869, b: 0.08018869, a: 0}
+  - {r: 0.16509432, g: 0.48113197, b: 1, a: 0}
+  - {r: 0.9809033, g: 1, b: 0.21226418, a: 0}
+  - {r: 0.27830184, g: 1, b: 0.16509432, a: 0}
 --- !u!54 &3671750945385672365
 Rigidbody:
   m_ObjectHideFlags: 0
