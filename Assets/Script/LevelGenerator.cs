@@ -4,19 +4,39 @@ using System.Collections.Generic;
 public class LevelGenerator : MonoBehaviour
 {
     public Material UnColoredMat;
-    public Texture2D map;
+    public Texture2D[] maps;
+    private Texture2D map;
     public MeshRenderer CubeMesh;
     public List<Color32> Colors = new List<Color32>();
     public List<Material> materials = new List<Material>();
-    public LevelManager levelManager;
+    public LevelManager[] levelManager;
     public Shader URP_Lit;
+    public int PlayerLevel;
+
+
     void Awake()
     {
+        if (PlayerPrefs.HasKey("PlayerLevel"))
+        {
+
+            PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("PlayerLevel", 0);
+        }
+        if (PlayerLevel >= maps.Length)
+        {
+            PlayerPrefs.SetInt("PlayerLevel", 0);
+            PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+        }
+        map = maps[PlayerLevel];
         GenerateMaterials();
         GenerateLevel();
     }
     void Start()
     {
+        
     }
 
     void GenerateMaterials()

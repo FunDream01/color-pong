@@ -12,12 +12,10 @@ public class Ball : MonoBehaviour
     public bool canClone = false;
     public float DelayTime;
     public float constantSpeed = 4f;
-    private LevelManager levelManager;
     public PlayerContoller playerMngr;
 
     private void Start()
     {
-        levelManager=FindObjectOfType<LevelManager>();
         Time.timeScale=1;
         Invoke("startCanCloning", DelayTime);
         move();
@@ -34,12 +32,11 @@ public class Ball : MonoBehaviour
         ConstantVelocity();
         CastRay();
         // GetComponent<Rigidbody>().velocity *= BallSpeed*100;
-       //Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
+        //Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
         /*if (Input.GetMouseButtonDown(0))
         {
             Time.timeScale=1;
         }*/
-        
     }
     public void ConstantVelocity(){
         if (playerMngr == null)
@@ -60,37 +57,34 @@ public class Ball : MonoBehaviour
     }
     public void CastRay(){
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 500))
-        {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 500)){
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hit.distance, Color.red);
-            if (hit.transform.tag == "Pixel")
-            {
-                if (hit.transform.GetComponent<PixelManager>() == null)
-                {
+            if (hit.transform.tag == "Pixel"){
+                if (hit.transform.GetComponent<PixelManager>() == null){
                     return;
                 }
-                if (hit.transform.GetComponent<PixelManager>().isColored)
-                {
+                if (hit.transform.GetComponent<PixelManager>().isColored){
                     return;
                 }
-                else
-                {
+                else{
                     hit.transform.GetComponent<PixelManager>().ColorThePixel();
                 }
             }
         }
     }
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("myBallz"))
-        {
+    void OnCollisionEnter(Collision other){
+        if (other.gameObject.CompareTag(Tag.CubeTag)){
             //move();
         }
-        if (other.gameObject.CompareTag("Player")){
+        else if (other.gameObject.CompareTag("Player")){
             Vector2 vel;
             vel.x = GetComponent<Rigidbody>().velocity.x;
             vel.y = (GetComponent<Rigidbody>().velocity.y / 2.0f) + (other.collider.attachedRigidbody.velocity.y / 3.0f);
             GetComponent<Rigidbody>().velocity = vel;
+        }
+        else if (other.gameObject.CompareTag(Tag.Destroy)){
+            LevelManager.instance.CkeckLose();
+            Destroy(this.gameObject);
         }
     }
 }
