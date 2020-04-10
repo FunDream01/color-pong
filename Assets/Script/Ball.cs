@@ -57,8 +57,8 @@ public class Ball : MonoBehaviour
     }
     public void CastRay(){
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 500)){
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hit.distance, Color.red);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.back), out hit, 500)){
+            Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.back) * hit.distance, Color.red);
             if (hit.transform.tag == "Pixel"){
                 if (hit.transform.GetComponent<PixelManager>() == null){
                     return;

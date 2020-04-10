@@ -55,7 +55,7 @@ public class PlayerContoller : MonoBehaviour
             }
             float delta = LastTapPos.x - curTapPos.x;
             LastTapPos = curTapPos;
-            transform.Translate(new Vector3((delta * Speed), 0, 0));
+            transform.Translate(new Vector3(-(delta * Speed), 0, 0));
             Vector3 pos = transform.position;
             pos.x = Mathf.Clamp(transform.position.x, -MaxDistance, MaxDistance);
             transform.position = pos;
