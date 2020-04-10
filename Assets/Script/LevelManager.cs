@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using DG.Tweening;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class LevelManager : MonoBehaviour
     public GameObject WinScreen;
     public GameObject LoseScreen;
     private bool isFinished;
+    private Transform camera;
+    private Tweener CameraTween;
     void Awake()
     {
         instance=this;
@@ -18,12 +21,8 @@ public class LevelManager : MonoBehaviour
     {
         WinScreen.SetActive(false);
         LoseScreen.SetActive(false);
+        camera=Camera.main.transform;
         TotalPixels=FindObjectsOfType<PixelManager>();
-    }
-
-    void Update()
-    {
-        
     }
     public void CheckComplet(){
         isFinished=true;
@@ -35,16 +34,22 @@ public class LevelManager : MonoBehaviour
             }
         }
         if(isFinished){
-            WinScreen.SetActive(true);
-            Ball[] balls = FindObjectsOfType<Ball>();
-            foreach (Ball item in balls)
-            {
-                Destroy(item.gameObject);
-            }
-
-            int PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
-            PlayerPrefs.SetInt("PlayerLevel",PlayerLevel+1);
+            Win();
         }
+    }
+    void Win(){
+
+        CameraTween=camera.DORotate(new Vector3(-95,0,0),2f).OnComplete(delegate{
+
+            WinScreen.SetActive(true);
+        });
+        Ball[] balls = FindObjectsOfType<Ball>();
+        foreach (Ball item in balls)
+        {
+            Destroy(item.gameObject);
+        }
+        int PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+        PlayerPrefs.SetInt("PlayerLevel",PlayerLevel+1);
     }
     public void CkeckLose()
     {

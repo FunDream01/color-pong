@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 public class LevelGenerator : MonoBehaviour
 {
+    public Transform Animation;
     public Material UnColoredMat;
     public Texture2D[] maps;
     private Texture2D map;
@@ -77,6 +78,7 @@ public class LevelGenerator : MonoBehaviour
                         PixelManager pixel = mesh.gameObject.AddComponent<PixelManager>();
                         pixel.ColoredMat = mat;
                         mesh.material = UnColoredMat;
+                        mesh.transform.parent=Animation;
                     }
                 }
                 /*else
