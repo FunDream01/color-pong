@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class LevelManager : MonoBehaviour
 {
+    public Transform imagepos;
+    public Transform image;
     public static LevelManager instance;
     public PixelManager[] TotalPixels;
     public GameObject WinScreen;
@@ -13,6 +15,7 @@ public class LevelManager : MonoBehaviour
     private bool isFinished;
     private Transform camera;
     private Tweener CameraTween;
+    private Tweener ImageTween;
     void Awake()
     {
         instance=this;
@@ -40,7 +43,8 @@ public class LevelManager : MonoBehaviour
     void Win(){
 
         CameraTween=camera.DORotate(new Vector3(-95,0,0),2f).OnComplete(delegate{
-
+            ImageTween = image.DOMove(imagepos.position, 1f);
+            ImageTween = image.DORotate(new Vector3(-95, 0, 0), 1f);
             WinScreen.SetActive(true);
         });
         Ball[] balls = FindObjectsOfType<Ball>();
