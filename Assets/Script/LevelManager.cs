@@ -38,9 +38,7 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator Win(){
         camera.GetComponent<Animator>().SetInteger("State",1);
-        yield return new WaitForSeconds(1);
-        camera.GetComponent<Animator>().SetInteger("State",2);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         WinScreen.SetActive(true);
         Ball[] balls = FindObjectsOfType<Ball>();
         foreach (Ball item in balls)
