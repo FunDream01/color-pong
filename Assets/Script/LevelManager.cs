@@ -40,13 +40,21 @@ public class LevelManager : MonoBehaviour
             Win();
         }
     }
+    Vector3 Rot=new Vector3(0, 0, -10);
     void Win(){
-
+        /*
         CameraTween=camera.DORotate(new Vector3(-95,0,0),2f).OnComplete(delegate{
-            ImageTween = image.DOMove(imagepos.position, 1f);
-            ImageTween = image.DORotate(new Vector3(-95, 0, 0), 1f);
+            
+            GameObject ImageColne =Instantiate(image.gameObject,imagepos.position,Quaternion.identity);
+            
+            GameObject parent =new GameObject();
+            parent.transform.position=ImageColne.transform.position;
+            ImageColne.transform.parent=parent.transform;
+            ImageColne.transform.rotation=camera.rotation;
+            ImageTween=parent.transform.DORotate(-Rot,1f).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.Linear);
             WinScreen.SetActive(true);
-        });
+        });*/
+        WinScreen.SetActive(true);
         Ball[] balls = FindObjectsOfType<Ball>();
         foreach (Ball item in balls)
         {
