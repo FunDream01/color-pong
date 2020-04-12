@@ -10,6 +10,11 @@ public class PixelManager : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material = ColoredMat;
         isColored = true;
+    }
+    public void ColorThePixel_CheckComplet()
+    {
+        GetComponent<MeshRenderer>().material = ColoredMat;
+        isColored = true;
         LevelManager.instance.CheckComplet();
     }
 

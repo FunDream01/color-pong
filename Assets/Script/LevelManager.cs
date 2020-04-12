@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     private bool isFinished;
     private Transform camera;
     public Animator ImageAnimator;
+    public int RemainPixels;
     void Awake()
     {
         instance=this;
@@ -23,15 +24,25 @@ public class LevelManager : MonoBehaviour
         LoseScreen.SetActive(false);
         camera=Camera.main.transform;
         TotalPixels=FindObjectsOfType<PixelManager>();
+        
+        RemainPixels= TotalPixels.Length;
     }
     public void CheckComplet(){
         isFinished=true;
+        RemainPixels--;
         foreach (PixelManager pixel in TotalPixels)
         {
-            if (pixel.isColored==false){
+            if (pixel.isColored==false && RemainPixels>3){
                 isFinished=false;
                 return;
             }
+        }
+        if (RemainPixels<=3 ){
+            foreach (PixelManager pixel in TotalPixels)
+            {
+                pixel.ColorThePixel();
+            }
+            StartCoroutine(Win());
         }
         if(isFinished){
             StartCoroutine(Win());
@@ -40,7 +51,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator Win(){
         camera.GetComponent<Animator>().SetInteger("State",1);
         ImageAnimator.SetInteger("State",1);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         WinScreen.SetActive(true);
         Ball[] balls = FindObjectsOfType<Ball>();
         foreach (Ball item in balls)

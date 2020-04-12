@@ -67,7 +67,7 @@ public class Ball : MonoBehaviour
                     return;
                 }
                 else{
-                    hit.transform.GetComponent<PixelManager>().ColorThePixel();
+                    hit.transform.GetComponent<PixelManager>().ColorThePixel_CheckComplet();
                 }
             }
         }
