@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public GameObject LoseScreen;
     private bool isFinished;
     private Transform camera;
+    public Animator ImageAnimator;
     void Awake()
     {
         instance=this;
@@ -38,6 +39,7 @@ public class LevelManager : MonoBehaviour
     }
     IEnumerator Win(){
         camera.GetComponent<Animator>().SetInteger("State",1);
+        ImageAnimator.SetInteger("State",1);
         yield return new WaitForSeconds(3);
         WinScreen.SetActive(true);
         Ball[] balls = FindObjectsOfType<Ball>();
