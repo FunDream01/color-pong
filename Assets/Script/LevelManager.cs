@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
     private Transform camera;
     public Animator ImageAnimator;
     public int RemainPixels;
+    private LevelGenerator Generator;
+    private int PlayerLevel;
     void Awake()
     {
         instance=this;
@@ -58,8 +60,13 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        int PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
-        PlayerPrefs.SetInt("PlayerLevel",PlayerLevel+1);
+        PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+
+        if (PlayerLevel>= Generator.maps.Length){
+
+        }else{
+            PlayerPrefs.SetInt("PlayerLevel",PlayerLevel+1);
+        }
     }
     public void CkeckLose()
     {
@@ -71,7 +78,18 @@ public class LevelManager : MonoBehaviour
     }
     public void RestartLevel(){
         
-        Debug.Log("Button");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }public void NextLevel(){
+        if (PlayerLevel== 0){
+            if (SceneManager.GetActiveScene().buildIndex+1>SceneManager.sceneCount){
+                SceneManager.LoadScene(0);
+            }else{
+                
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            }
+        }else{
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
