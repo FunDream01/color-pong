@@ -1322,6 +1322,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1ec4b92cc540b554f8650aa6fb3595a3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Border
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec4b92cc540b554f8650aa6fb3595a3, type: 3}
 --- !u!1 &1788721243
@@ -1534,6 +1539,7 @@ MonoBehaviour:
   WinScreen: {fileID: 98542355}
   LoseScreen: {fileID: 720609216}
   ImageAnimator: {fileID: 67372250}
+  RemainPixels: 0
 --- !u!1 &2145965156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,6 +1596,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 2515159440096004931, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelGen
+      objectReference: {fileID: 0}
     - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
         type: 3}
       propertyPath: maps.Array.size
@@ -1604,7 +1615,7 @@ PrefabInstance:
         type: 3}
       propertyPath: maps.Array.data[0]
       value: 
-      objectReference: {fileID: 2800000, guid: 16b47cfd7d9051a45aea5b6dcdbf643c, type: 3}
+      objectReference: {fileID: 2800000, guid: 16de558111e465f4f95e7b0e298ff0a5, type: 3}
     - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
         type: 3}
       propertyPath: maps.Array.data[1]
@@ -1640,6 +1651,12 @@ PrefabInstance:
       propertyPath: Animation
       value: 
       objectReference: {fileID: 67372249}
+    - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: PixelColorFX
+      value: 
+      objectReference: {fileID: 4993986082188097277, guid: 3ecee136623c7f44b8231d54b2260f47,
+        type: 3}
     - target: {fileID: 5031780210838345200, guid: 7643a229e62ddef40a442a0d0a1b7758,
         type: 3}
       propertyPath: m_LocalPosition.x

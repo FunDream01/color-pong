@@ -13,20 +13,21 @@ public class Ball : MonoBehaviour
     public float DelayTime;
     public float constantSpeed = 4f;
     public PlayerContoller playerMngr;
+    public ParticleSystem BorderHitFX;
 
     private void Start()
     {
-        Time.timeScale=1;
+        Time.timeScale = 1;
         Invoke("startCanCloning", DelayTime);
         move();
     }
-    
+
     public void move()
     {
         sx = Random.Range(0, 2) == 0 ? -1 : 1;
         float sy = Random.Range(0, 2) == 0 ? -1 : 1;
-        GetComponent<Rigidbody>().velocity = new Vector3(BallSpeed*sx, BallSpeed , 0f);
-    } 
+        GetComponent<Rigidbody>().velocity = new Vector3(BallSpeed * sx, BallSpeed, 0f);
+    }
     private void Update()
     {
         ConstantVelocity();
@@ -38,7 +39,8 @@ public class Ball : MonoBehaviour
             Time.timeScale=1;
         }*/
     }
-    public void ConstantVelocity(){
+    public void ConstantVelocity()
+    {
         if (playerMngr == null)
         {
             playerMngr = FindObjectOfType<PlayerContoller>();
@@ -51,38 +53,51 @@ public class Ball : MonoBehaviour
             GetComponent<Rigidbody>().velocity = tvel * constantSpeed;
         }
     }
-    public void startCanCloning() 
+    public void startCanCloning()
     {
         canClone = true;
     }
-    public void CastRay(){
+    public void CastRay()
+    {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.back), out hit, 500)){
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.back), out hit, 500))
+        {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.back) * hit.distance, Color.red);
-            if (hit.transform.tag == "Pixel"){
-                if (hit.transform.GetComponent<PixelManager>() == null){
+            if (hit.transform.tag == "Pixel")
+            {
+                if (hit.transform.GetComponent<PixelManager>() == null)
+                {
                     return;
                 }
-                if (hit.transform.GetComponent<PixelManager>().isColored){
+                if (hit.transform.GetComponent<PixelManager>().isColored)
+                {
                     return;
                 }
-                else{
+                else
+                {
                     hit.transform.GetComponent<PixelManager>().ColorThePixel_CheckComplet();
                 }
             }
         }
     }
-    void OnCollisionEnter(Collision other){
-        if (other.gameObject.CompareTag(Tag.CubeTag)){
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Border"))
+        {
+
+            BorderHitFX.Play();
             //move();
         }
-        else if (other.gameObject.CompareTag("Player")){
+        else if (other.gameObject.CompareTag("Player"))
+        {
+            BorderHitFX.Play();
             Vector2 vel;
             vel.x = GetComponent<Rigidbody>().velocity.x;
             vel.y = (GetComponent<Rigidbody>().velocity.y / 2.0f) + (other.collider.attachedRigidbody.velocity.y / 3.0f);
             GetComponent<Rigidbody>().velocity = vel;
         }
-        else if (other.gameObject.CompareTag(Tag.Destroy)){
+        else if (other.gameObject.CompareTag(Tag.Destroy))
+        {
             LevelManager.instance.CkeckLose();
             Destroy(this.gameObject);
         }

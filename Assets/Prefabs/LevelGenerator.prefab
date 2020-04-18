@@ -43,11 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc5cedb51347e94bb91e8fa47519d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animation: {fileID: 0}
   UnColoredMat: {fileID: 2100000, guid: 1ed354b925528d640832014dc8c4d17c, type: 2}
-  map: {fileID: 0}
+  maps: []
   CubeMesh: {fileID: 3504477496006178648, guid: 407861af92fcd4044b474ef0d2c0ba53,
     type: 3}
   Colors: []
   materials: []
-  levelManager: {fileID: 0}
+  levelManager: []
   URP_Lit: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  PlayerLevel: 0
+  PixelColorFX: {fileID: 4439682823325383147, guid: 304674da57aa61945a748e06ad5ca54e,
+    type: 3}

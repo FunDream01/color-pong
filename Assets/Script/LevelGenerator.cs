@@ -13,6 +13,7 @@ public class LevelGenerator : MonoBehaviour
     public LevelManager[] levelManager;
     public Shader URP_Lit;
     public int PlayerLevel;
+    public ParticleSystem PixelColorFX;
 
 
     void Awake()

@@ -1460,6 +1460,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1ec4b92cc540b554f8650aa6fb3595a3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Border
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec4b92cc540b554f8650aa6fb3595a3, type: 3}
 --- !u!1 &1788721243
@@ -1705,6 +1710,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515159440096004931, guid: 7643a229e62ddef40a442a0d0a1b7758,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelGen
       objectReference: {fileID: 0}
     - target: {fileID: 2955779555254313256, guid: 7643a229e62ddef40a442a0d0a1b7758,
         type: 3}

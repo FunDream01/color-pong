@@ -7,6 +7,8 @@ TagManager:
   - myBallz
   - Pixel
   - DestroyBall
+  - Border
+  - LevelGen
   layers:
   - Default
   - TransparentFX
