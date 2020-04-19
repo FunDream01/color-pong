@@ -29,8 +29,8 @@ public class LevelGenerator : MonoBehaviour
         }
         if (PlayerLevel >= maps.Length)
         {
-            PlayerPrefs.SetInt("PlayerLevel", 0);
-            PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+            //PlayerPrefs.SetInt("PlayerLevel", 0);
+            //PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
         }
         map = maps[PlayerLevel];
         GenerateMaterials();

@@ -15,18 +15,19 @@ public class LevelManager : MonoBehaviour
     public Animator ImageAnimator;
     public int RemainPixels;
     private LevelGenerator Generator;
-    private int PlayerLevel;
+    public int PlayerLevel;
     void Awake()
     {
         instance=this;
     }
     void Start()
     {
+        PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
         WinScreen.SetActive(false);
         LoseScreen.SetActive(false);
         camera=Camera.main.transform;
         TotalPixels=FindObjectsOfType<PixelManager>();
-        
+        Generator=FindObjectOfType<LevelGenerator>();
         RemainPixels= TotalPixels.Length;
     }
     public void CheckComplet(){
@@ -46,9 +47,6 @@ public class LevelManager : MonoBehaviour
             }
             StartCoroutine(Win());
         }
-        if(isFinished){
-            StartCoroutine(Win());
-        }
     }
     IEnumerator Win(){
         camera.GetComponent<Animator>().SetInteger("State",1);
@@ -60,13 +58,13 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
-
+        PlayerLevel++;
         if (PlayerLevel>= Generator.maps.Length){
-
+            PlayerPrefs.SetInt("PlayerLevel",0);
         }else{
-            PlayerPrefs.SetInt("PlayerLevel",PlayerLevel+1);
+            PlayerPrefs.SetInt("PlayerLevel",PlayerLevel);
         }
+        PlayerLevel=PlayerPrefs.GetInt("PlayerLevel");
     }
     public void CkeckLose()
     {
@@ -78,17 +76,18 @@ public class LevelManager : MonoBehaviour
     }
     public void RestartLevel(){
         
+        Debug.Log("RestartLevel");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }public void NextLevel(){
-        if (PlayerLevel== 0){
-            if (SceneManager.GetActiveScene().buildIndex+1>SceneManager.sceneCount){
+    }
+    public void NextLevel(){
+        Debug.Log("NextLevel");
+        if (PlayerLevel==0){
+            if (SceneManager.GetActiveScene().buildIndex+1>1){
                 SceneManager.LoadScene(0);
             }else{
-                
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
         }else{
-            
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
