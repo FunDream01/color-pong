@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class LevelManager : MonoBehaviour
     public int RemainPixels;
     private LevelGenerator Generator;
     public int PlayerLevel;
+    public TextMeshProUGUI LevelIndicator;
     public GameObject analyticsPrefab;
 
     Analytics analytics;
@@ -35,6 +37,7 @@ public class LevelManager : MonoBehaviour
         TotalPixels = FindObjectsOfType<PixelManager>();
         Generator = FindObjectOfType<LevelGenerator>();
         RemainPixels = TotalPixels.Length;
+        LevelIndicator.text="LEVEL "+(PlayerLevel+1);
     }
     public void CheckComplet()
     {
