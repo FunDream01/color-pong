@@ -13,13 +13,16 @@ public class PlayerContoller : MonoBehaviour
     public GameObject CloneBall;
     public float MaxDistance;
     //Colors for the balls
-    public Color[] Colors;
+    public List<Color32> Colors;
     GameObject MainBall;
 
     void Start()
     {
+        Colors = FindObjectOfType<LevelGenerator>().Colors;
+
+
         MainBall = GameObject.FindGameObjectWithTag("myBallz");
-        MainBall.GetComponent<Renderer>().material.SetColor("_Color", Colors[Random.Range(0, Colors.Length)]);
+        MainBall.GetComponent<Renderer>().material.SetColor("_Color", Colors[Random.Range(0, Colors.Count)]);
     }
     void OnCollisionEnter(Collision other)
     {
@@ -30,7 +33,7 @@ public class PlayerContoller : MonoBehaviour
                 GameObject clone;
                 clone = Instantiate(CloneBall, other.transform.position, other.transform.rotation);
                 other.gameObject.GetComponent<Ball>().canClone = false;
-                clone.GetComponent<Renderer>().material.SetColor("_Color", Colors[Random.Range(0, Colors.Length)]);
+                clone.GetComponent<Renderer>().material.SetColor("_Color", Colors[Random.Range(0, Colors.Count)]);
                 //clone.GetComponent<Ball>().move();
                 other.gameObject.GetComponent<Ball>().Invoke("startCanCloning", 2);
             }
@@ -39,6 +42,10 @@ public class PlayerContoller : MonoBehaviour
     private void FixedUpdate()
     {
         {
+            if (Colors == null)
+            {
+                Colors = FindObjectOfType<LevelGenerator>().Colors;
+            }
             constantSpeed += Time.deltaTime * SpeedIncrement;
         }
     }
