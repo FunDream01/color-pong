@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     public int PlayerLevel;
     public TextMeshProUGUI LevelIndicator;
     public GameObject analyticsPrefab;
+    public GameObject FireflyFX;
 
     Analytics analytics;
     void Awake()
@@ -27,6 +28,7 @@ public class LevelManager : MonoBehaviour
     }
     void Start()
     {
+        FireflyFX.SetActive(false);
         if (analytics == null)
         { Instantiate(analyticsPrefab); analytics = analyticsPrefab.GetComponent<Analytics>(); }
         StartCoroutine(analytics.waitToCall(analytics.LogLevelStarted, SceneManager.GetActiveScene().buildIndex));
@@ -37,7 +39,7 @@ public class LevelManager : MonoBehaviour
         TotalPixels = FindObjectsOfType<PixelManager>();
         Generator = FindObjectOfType<LevelGenerator>();
         RemainPixels = TotalPixels.Length;
-        LevelIndicator.text="LEVEL "+(PlayerLevel+1);
+        LevelIndicator.text = "LEVEL " + (PlayerLevel + 1);
     }
     public void CheckComplet()
     {
@@ -65,7 +67,8 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(analytics.waitToCall(analytics.LogLevelSucceeded, SceneManager.GetActiveScene().buildIndex));
         camera.GetComponent<Animator>().SetInteger("State", 1);
         ImageAnimator.SetInteger("State", 1);
-        yield return new WaitForSeconds(5);
+        FireflyFX.SetActive(true);
+        yield return new WaitForSeconds(4);
         WinScreen.SetActive(true);
         Ball[] balls = FindObjectsOfType<Ball>();
         foreach (Ball item in balls)
