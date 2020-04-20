@@ -6,7 +6,7 @@ public class LevelGenerator : MonoBehaviour
     public Transform Animation;
     public Material UnColoredMat;
     public Texture2D[] maps;
-    private Texture2D map;
+    public Texture2D map;
     public MeshRenderer CubeMesh;
     public List<Color32> Colors = new List<Color32>();
     public List<Material> materials = new List<Material>();
@@ -20,19 +20,21 @@ public class LevelGenerator : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("PlayerLevel"))
         {
-
             PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+            if (PlayerLevel >= maps.Length)
+            {
+                map = maps[Random.Range(0,maps.Length)];
+            }else{
+                map = maps[PlayerLevel];
+            }
         }
         else
         {
             PlayerPrefs.SetInt("PlayerLevel", 0);
+            PlayerLevel=PlayerPrefs.GetInt("PlayerLevel");
+            map = maps[PlayerLevel];
         }
-        if (PlayerLevel >= maps.Length)
-        {
-            PlayerPrefs.SetInt("PlayerLevel", 0);
-            PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
-        }
-        map = maps[PlayerLevel];
+        
         GenerateMaterials();
         GenerateLevel();
     }

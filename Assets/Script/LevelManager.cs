@@ -76,15 +76,7 @@ public class LevelManager : MonoBehaviour
             Destroy(item.gameObject);
         }
         PlayerLevel++;
-        if (PlayerLevel >= Generator.maps.Length)
-        {
-            PlayerPrefs.SetInt("PlayerLevel", 0);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("PlayerLevel", PlayerLevel);
-        }
-        PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+        PlayerPrefs.SetInt("PlayerLevel", PlayerLevel);
     }
     public void CkeckLose()
     {
@@ -98,27 +90,11 @@ public class LevelManager : MonoBehaviour
     }
     public void RestartLevel()
     {
-
         Debug.Log("RestartLevel");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void NextLevel()
     {
-        Debug.Log("NextLevel");
-        if (PlayerLevel == 0)
-        {
-            if (SceneManager.GetActiveScene().buildIndex + 1 > 1)
-            {
-                SceneManager.LoadScene(0);
-            }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
